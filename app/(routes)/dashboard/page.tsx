@@ -1,4 +1,3 @@
-import { UserButton } from '@clerk/nextjs';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -7,11 +6,7 @@ export const metadata: Metadata = {
 };
 
 function Dashboard() {
-  return (
-    <div>
-      <UserButton />
-    </div>
-  );
+  return <div>Dashboard</div>;
 }
 
 export default Dashboard;
