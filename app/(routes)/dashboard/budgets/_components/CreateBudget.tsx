@@ -17,7 +17,7 @@ import EmojiPicker from 'emoji-picker-react';
 import { useState } from 'react';
 import { toast } from 'sonner';
 
-function CreateBudget() {
+function CreateBudget({ refreshData }: { refreshData: () => void }) {
   const [emojiIcon, setEmojiIcon] = useState('😃');
   const [openEmojiPicker, setOpenEmojiPicker] = useState(false);
   const [name, setName] = useState('');
@@ -43,6 +43,7 @@ function CreateBudget() {
     const result = await response.json();
 
     if (result) {
+      refreshData();
       toast('New budget added!');
     }
   };
@@ -68,7 +69,7 @@ function CreateBudget() {
                 >
                   {emojiIcon}
                 </Button>
-                <div className='absolute'>
+                <div className='absolute z-20'>
                   <EmojiPicker
                     open={openEmojiPicker}
                     onEmojiClick={(e) => {

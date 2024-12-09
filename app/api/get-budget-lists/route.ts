@@ -1,6 +1,6 @@
 import { db } from '@/utils/dbConfig';
 import { Budgets, Expenses } from '@/utils/schema';
-import { eq, getTableColumns, sql } from 'drizzle-orm';
+import { desc, eq, getTableColumns, sql } from 'drizzle-orm';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(request: NextRequest) {
@@ -22,7 +22,8 @@ export async function GET(request: NextRequest) {
     .from(Budgets)
     .leftJoin(Expenses, eq(Budgets.id, Expenses.budgetId))
     .where(eq(Budgets.createdBy, email))
-    .groupBy(Budgets.id);
+    .groupBy(Budgets.id)
+    .orderBy(desc(Budgets.id));
 
   return NextResponse.json(result);
 }
