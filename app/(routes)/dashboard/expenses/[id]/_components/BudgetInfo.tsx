@@ -72,7 +72,13 @@ function BudgetInfo() {
       </div>
       <div className='mt-4'>
         <h2 className='text-lg font-bold'>Latest Expenses</h2>
-        <ExpenseList expenseLists={expenseLists || []} />
+        <ExpenseList
+          expenseLists={expenseLists || []}
+          refreshData={() => {
+            getExpenseLists();
+            getBudgetInfo();
+          }}
+        />
       </div>
     </div>
   );

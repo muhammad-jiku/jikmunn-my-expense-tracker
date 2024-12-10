@@ -47,7 +47,7 @@ function CreateExpense({
 
     if (result) {
       refreshData();
-      toast('New Expense added!');
+      toast('New expense added!');
     }
   };
 

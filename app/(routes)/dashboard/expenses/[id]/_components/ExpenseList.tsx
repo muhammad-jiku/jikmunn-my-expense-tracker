@@ -2,8 +2,37 @@
 
 import { ExpenseType } from '@/types';
 import { Trash } from 'lucide-react';
+import { toast } from 'sonner';
 
-function ExpenseList({ expenseLists }: { expenseLists: ExpenseType[] | null }) {
+function ExpenseList({
+  expenseLists,
+  refreshData,
+}: {
+  expenseLists: ExpenseType[] | null;
+  refreshData: () => void;
+}) {
+  const onDeleteExpense = async (id: number) => {
+    const data = {
+      id,
+    };
+
+    console.log(data);
+    const response = await fetch('/api/delete-expense', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        data,
+      }),
+    });
+
+    const result = await response.json();
+
+    if (result) {
+      refreshData();
+      toast('Expense deleted!');
+    }
+  };
+
   return (
     <div className='mt-3'>
       <div className='grid grid-cols-4 p-2 bg-slate-200'>
@@ -18,7 +47,12 @@ function ExpenseList({ expenseLists }: { expenseLists: ExpenseType[] | null }) {
           <h2>{expense?.amount}</h2>
           <h2>{expense?.createdAt}</h2>
           <h2>
-            <Trash className='text-red-600' />
+            <Trash
+              className='text-red-600 cursor-pointer'
+              onClick={() => {
+                onDeleteExpense(expense?.id);
+              }}
+            />
           </h2>
         </div>
       ))}
