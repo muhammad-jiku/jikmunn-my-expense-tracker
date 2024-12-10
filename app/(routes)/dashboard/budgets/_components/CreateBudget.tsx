@@ -54,12 +54,12 @@ function CreateBudget({ refreshData }: { refreshData: () => void }) {
         <DialogTrigger asChild>
           <div className='bg-slate-100 p-10 rounded-md flex flex-col items-center border-2 border-dashed cursor-pointer hover:shadow-md'>
             <h2 className='text-3xl'>+</h2>
-            <h2>Create New Budget</h2>
+            <h2>Add New Budget</h2>
           </div>
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Create New Budget</DialogTitle>
+            <DialogTitle>Add New Budget</DialogTitle>
             <DialogDescription>
               <div className='mt-5'>
                 <Button
@@ -79,7 +79,7 @@ function CreateBudget({ refreshData }: { refreshData: () => void }) {
                   />
                 </div>
                 <div className='mt-2'>
-                  <h2 className='text-black font-medium my-1'>Budget Name</h2>
+                  <h2 className='text-black font-medium my-1'>Name</h2>
                   <Input
                     placeholder='e.g. Home Decor'
                     onChange={(e) => {
@@ -88,7 +88,7 @@ function CreateBudget({ refreshData }: { refreshData: () => void }) {
                   />
                 </div>
                 <div className='mt-2'>
-                  <h2 className='text-black font-medium my-1'>Budget Amount</h2>
+                  <h2 className='text-black font-medium my-1'>Amount</h2>
                   <Input
                     placeholder='e.g. 100$'
                     onChange={(e) => {
@@ -106,7 +106,7 @@ function CreateBudget({ refreshData }: { refreshData: () => void }) {
                 disabled={!(name && amount)}
                 onClick={() => onCreateBudget()}
               >
-                Create Budget
+                Add Budget
               </Button>
             </DialogClose>
           </DialogFooter>
