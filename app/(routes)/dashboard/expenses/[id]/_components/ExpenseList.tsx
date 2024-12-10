@@ -46,9 +46,9 @@ function ExpenseList({
           <h2>{expense?.name}</h2>
           <h2>{expense?.amount}</h2>
           <h2>{expense?.createdAt}</h2>
-          <h2>
+          <h2 className='flex items-center justify-center md:justify-start'>
             <Trash
-              className='text-red-600 cursor-pointer'
+              className='text-red-600 text-center cursor-pointer'
               onClick={() => {
                 onDeleteExpense(expense?.id);
               }}

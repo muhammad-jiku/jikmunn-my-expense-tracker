@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 function Expenses() {
   return (
     <div className='p-10'>
-      <h2 className='text-2xl font-bold'>My Expenses</h2>
+      {/* <h2 className='text-2xl font-bold'>My Expenses</h2> */}
       <BudgetInfo />
     </div>
   );
