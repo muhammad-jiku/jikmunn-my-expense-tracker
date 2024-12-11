@@ -14,12 +14,13 @@ import {
 import { Button } from '@/components/ui/button';
 import { BudgetType, ExpenseType } from '@/types';
 import { useUser } from '@clerk/nextjs';
-import { Trash } from 'lucide-react';
+import { ArrowLeftCircle, Trash } from 'lucide-react';
 import { useParams, useRouter } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 import { toast } from 'sonner';
 import BudgetItem from '../../../budgets/_components/BudgetItem';
 import CreateExpense from './CreateExpense';
+import EditBudget from './EditBudget';
 import ExpenseList from './ExpenseList';
 
 function BudgetInfo() {
@@ -92,34 +93,52 @@ function BudgetInfo() {
   return (
     <div>
       <h2 className='text-2xl font-bold flex justify-between items-center'>
-        My Expenses{' '}
-        <AlertDialog>
-          <AlertDialogTrigger asChild>
-            <Button className='flex gap-2' variant={'destructive'}>
-              <Trash />
-            </Button>
-          </AlertDialogTrigger>
-          <AlertDialogContent>
-            <AlertDialogHeader>
-              <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-              <AlertDialogDescription>
-                This action cannot be undone. This will permanently delete your
-                budget and its expenses and remove your data from our servers.
-              </AlertDialogDescription>
-            </AlertDialogHeader>
-            <AlertDialogFooter>
-              <AlertDialogCancel>Cancel</AlertDialogCancel>
-              <AlertDialogAction
-                className='bg-red-500 text-white hover:bg-red-600 hover:text-slate-200 cursor-pointer'
-                onClick={() => {
-                  onDeleteBudget(id);
-                }}
-              >
-                Confirm
-              </AlertDialogAction>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialog>
+        <span className='flex items-center justify-between gap-2'>
+          <ArrowLeftCircle
+            className='cursor-pointer'
+            onClick={() => {
+              router.back();
+            }}
+          />
+          My Expenses{' '}
+        </span>
+        <div className='flex items-center justify-between gap-2'>
+          <EditBudget
+            budget={budgetInfo[0]}
+            refreshData={() => {
+              getExpenseLists();
+              getBudgetInfo();
+            }}
+          />
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <Button className='flex gap-2' variant={'destructive'}>
+                <Trash />
+              </Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                <AlertDialogDescription>
+                  This action cannot be undone. This will permanently delete
+                  your budget and its expenses and remove your data from our
+                  servers.
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                <AlertDialogAction
+                  className='bg-red-500 text-white hover:bg-red-600 hover:text-slate-200 cursor-pointer'
+                  onClick={() => {
+                    onDeleteBudget(id);
+                  }}
+                >
+                  Confirm
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
+        </div>{' '}
       </h2>
       <div className='grid grid-cols-1'>
         <div className='grid grid-cols-1 md:grid-cols-2 mt-6 gap-2'>
