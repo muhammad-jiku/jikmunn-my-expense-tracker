@@ -1,16 +1,17 @@
 'use client';
 
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from '@/components/ui/alert-dialog';
+import
+  {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+  } from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
 import { BudgetType, ExpenseType } from '@/types';
 import { useUser } from '@clerk/nextjs';
@@ -158,7 +159,6 @@ function BudgetInfo() {
           )}
         </div>
         <div className='mt-4'>
-          <h2 className='text-lg font-bold'>Latest Expenses</h2>
           <ExpenseList
             expenseLists={expenseLists || []}
             refreshData={() => {
