@@ -1,7 +1,12 @@
 'use client';
 
 import { UserButton } from '@clerk/nextjs';
-import { LayoutGrid, PiggyBank, ReceiptText, ShieldCheck } from 'lucide-react';
+import {
+  BadgeDollarSign,
+  LayoutGrid,
+  ReceiptText,
+  ShieldCheck,
+} from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -18,7 +23,7 @@ function SideNav() {
     {
       id: 2,
       name: 'Budgets',
-      icon: PiggyBank,
+      icon: BadgeDollarSign,
       path: '/dashboard/budgets',
     },
     {
@@ -43,7 +48,9 @@ function SideNav() {
 
   return (
     <div className='h-screen p-5 border shadow-sm'>
-      <Image src={'/logo.svg'} alt='logo' width='180' height='120' />
+      <div className='flex items-center justify-center'>
+        <Image src={'/logo.svg'} alt='logo' width={60} height={30} />
+      </div>
       <div className='mt-5'>
         {menuLists.map((menu, idx) => (
           <Link href={menu.path} key={idx}>
