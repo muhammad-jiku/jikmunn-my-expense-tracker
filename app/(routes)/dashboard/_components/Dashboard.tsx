@@ -3,6 +3,7 @@
 import { BudgetType } from '@/types';
 import { useUser } from '@clerk/nextjs';
 import { useCallback, useEffect, useState } from 'react';
+import BarChartDash from './BarChartDash';
 import CardInfo from './CardInfo';
 
 function Dashboard() {
@@ -35,6 +36,12 @@ function Dashboard() {
         expense.
       </p>
       <CardInfo budgetLists={budgetLists} />
+      <div className='mt-6 grid grid-cols-1 md:grid-cols-3 gap-2'>
+        <div className='md:col-span-2'>
+          <BarChartDash budgetLists={budgetLists} />
+        </div>
+        <div>Chartt</div>
+      </div>
     </div>
   );
 }
