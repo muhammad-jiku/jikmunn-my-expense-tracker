@@ -28,10 +28,10 @@ function BudgetItem({ budget }: { budget: BudgetType }) {
         <div className='mt-5'>
           <div className='flex items-center justify-between mb-2'>
             <h2 className='text-xs text-slate-400'>
-              ${budget?.totalSpend ? budget?.totalSpend : 0} spent
+              ${budget?.totalSpend ? budget?.totalSpend?.toFixed(2) : 0} spent
             </h2>
             <h2 className='text-xs text-slate-400'>
-              ${budget?.amount - budget?.totalSpend} remains
+              ${(budget?.amount - budget?.totalSpend)?.toFixed(2)} remains
             </h2>
           </div>
           <div className='w-full bg-slate-300 h-2 rounded-full'>

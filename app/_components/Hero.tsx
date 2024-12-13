@@ -1,6 +1,19 @@
+'use client';
+
+import { useUser } from '@clerk/nextjs';
 import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
 function Hero() {
+  const { isSignedIn } = useUser();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (isSignedIn) router.replace('/dashboard');
+  }, [isSignedIn, router]);
+
   return (
     <section className='bg-gray-50 flex items-center flex-col'>
       <div className='mx-auto max-w-screen-xl px-4 py-32 lg:flex'>
@@ -16,12 +29,12 @@ function Hero() {
             Start creating your money and save ton of money!
           </p>
           <div className='mt-8 flex flex-wrap justify-center gap-4'>
-            <a
-              className='block w-full rounded bg-primary px-12 py-3 text-sm font-medium text-white shadow hover:bg-blue-700 focus:outline-none focus:ring active:bg-blue-500 sm:w-auto'
-              href='/sign-in'
+            <Link
+              className='block w-full rounded bg-primary px-12 py-3 text-sm font-medium text-white shadow hover:bg-green-700 focus:outline-none focus:ring active:bg-green-500 sm:w-auto cursor-pointer'
+              href={'/sign-in'}
             >
               Get Started
-            </a>
+            </Link>
           </div>
         </div>
       </div>

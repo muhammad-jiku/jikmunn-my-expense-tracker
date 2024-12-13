@@ -2,6 +2,7 @@
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Loader } from 'lucide-react';
 import { useState } from 'react';
 import { toast } from 'sonner';
 
@@ -14,6 +15,7 @@ function CreateExpense({
 }) {
   const [name, setName] = useState('');
   const [amount, setAmount] = useState('');
+  const [loading, setLoading] = useState(false);
 
   // Function to format the date as MM/DD/YYYY
   const formatDate = (date: Date): string => {
@@ -27,6 +29,7 @@ function CreateExpense({
   const currentDate = formatDate(new Date());
 
   const onCreateExpense = async () => {
+    setLoading(true);
     const data = {
       name,
       amount,
@@ -48,7 +51,11 @@ function CreateExpense({
     if (result) {
       refreshData();
       toast('New expense added!');
+      setName('');
+      setAmount('');
+      setLoading(false);
     }
+    setLoading(false);
   };
 
   return (
@@ -59,6 +66,7 @@ function CreateExpense({
           <h2 className='text-black font-medium my-1'>Name</h2>
           <Input
             placeholder='e.g. Decoration'
+            value={name}
             onChange={(e) => {
               setName(e.target.value);
             }}
@@ -68,6 +76,7 @@ function CreateExpense({
           <h2 className='text-black font-medium my-1'>Amount</h2>
           <Input
             placeholder='e.g. 100$'
+            value={amount}
             onChange={(e) => {
               setAmount(e.target.value);
             }}
@@ -76,10 +85,10 @@ function CreateExpense({
       </div>
       <Button
         className='mt-5 w-full'
-        disabled={!(name && amount)}
+        disabled={!(name && amount) || loading}
         onClick={() => onCreateExpense()}
       >
-        Add Expense
+        {loading ? <Loader className='animate-spin' /> : 'Add Expense'}
       </Button>
     </div>
   );
