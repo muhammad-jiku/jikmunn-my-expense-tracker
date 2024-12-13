@@ -2,6 +2,7 @@
 
 import { BudgetType, ExpenseType } from '@/types';
 import { useUser } from '@clerk/nextjs';
+import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 import BudgetItem from '../budgets/_components/BudgetItem';
 import ExpenseList from '../expenses/[id]/_components/ExpenseList';
@@ -9,7 +10,8 @@ import BarChartDash from './BarChartDash';
 import CardInfo from './CardInfo';
 
 function Dashboard() {
-  const { user } = useUser();
+  const { user, isSignedIn } = useUser();
+  const router = useRouter();
   const [budgetLists, setBudgetLists] = useState<BudgetType[]>([]);
   const [expenseLists, setExpenseLists] = useState<ExpenseType[]>([]);
 
@@ -47,6 +49,10 @@ function Dashboard() {
       getExpenseLists();
     }
   }, [user, getBudgetLists, getExpenseLists]); // Dependencies include the user and the callback
+
+  useEffect(() => {
+    if (!isSignedIn) router.replace('/');
+  }, [isSignedIn, router]);
 
   return (
     <div className='p-8'>
