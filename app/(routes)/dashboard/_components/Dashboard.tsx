@@ -67,7 +67,7 @@ function Dashboard() {
             }}
           />
         </div>
-        <div className='grid grid-cols-1 gap-3'>
+        <div className='grid grid-cols-1 gap-0'>
           <h2 className='text-xl font-bold my-3'>Latest Budgets</h2>
           {budgetLists?.map((budget, idx) => (
             <BudgetItem budget={budget} key={idx} />

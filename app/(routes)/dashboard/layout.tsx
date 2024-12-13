@@ -21,7 +21,7 @@ function Dashboardlayout({ children }: { children: React.ReactNode }) {
     });
 
     const result = await response.json();
-    console.log(result);
+
     if (result.length === 0) {
       router.replace('/dashboard/budgets');
     }

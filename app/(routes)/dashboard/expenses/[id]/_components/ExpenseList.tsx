@@ -16,7 +16,6 @@ function ExpenseList({
       id,
     };
 
-    console.log(data);
     const response = await fetch('/api/delete-expense', {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' },

@@ -37,7 +37,6 @@ function CreateExpense({
       createdAt: currentDate,
     };
 
-    console.log(data);
     const response = await fetch('/api/create-expense', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

@@ -1,17 +1,16 @@
 'use client';
 
-import
-  {
-    AlertDialog,
-    AlertDialogAction,
-    AlertDialogCancel,
-    AlertDialogContent,
-    AlertDialogDescription,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogTitle,
-    AlertDialogTrigger,
-  } from '@/components/ui/alert-dialog';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
 import { BudgetType, ExpenseType } from '@/types';
 import { useUser } from '@clerk/nextjs';
@@ -58,7 +57,7 @@ function BudgetInfo() {
     });
 
     const result = await response.json();
-    console.log(result);
+
     setBudgetInfo(result);
   }, [user?.primaryEmailAddress?.emailAddress, id]); // Include dependencies
 
@@ -67,7 +66,6 @@ function BudgetInfo() {
       id: Number(id),
     };
 
-    console.log(data);
     const response = await fetch('/api/delete-budget', {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' },

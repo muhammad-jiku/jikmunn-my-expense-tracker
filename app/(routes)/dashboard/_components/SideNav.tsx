@@ -10,9 +10,10 @@ import {
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useEffect } from 'react';
 
 function SideNav() {
+  const path = usePathname();
+
   const menuLists = [
     {
       id: 1,
@@ -39,12 +40,6 @@ function SideNav() {
       path: '/dashboard/upgrade',
     },
   ];
-
-  const path = usePathname();
-
-  useEffect(() => {
-    console.log(path);
-  }, [path]);
 
   return (
     <div className='h-screen p-5 border shadow-sm'>
