@@ -5,7 +5,7 @@ function BudgetItem({ budget }: { budget: BudgetType }) {
   const calculateProgress = () => {
     const percentage = (budget?.totalSpend / budget?.amount) * 100;
 
-    return percentage.toFixed(2);
+    return percentage > 100 ? 100 : percentage.toFixed(2);
   };
 
   return (

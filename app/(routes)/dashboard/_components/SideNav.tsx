@@ -1,6 +1,6 @@
 'use client';
 
-import { UserButton } from '@clerk/nextjs';
+import { UserButton, useUser } from '@clerk/nextjs';
 import {
   BadgeDollarSign,
   LayoutGrid,
@@ -12,6 +12,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 function SideNav() {
+  const { user } = useUser();
   const path = usePathname();
 
   const menuLists = [
@@ -23,18 +24,24 @@ function SideNav() {
     },
     {
       id: 2,
+      name: 'Incomes',
+      icon: BadgeDollarSign,
+      path: '/dashboard/incomes',
+    },
+    {
+      id: 3,
       name: 'Budgets',
       icon: BadgeDollarSign,
       path: '/dashboard/budgets',
     },
     {
-      id: 3,
+      id: 4,
       name: 'Expenses',
       icon: ReceiptText,
       path: '/dashboard/expenses',
     },
     {
-      id: 4,
+      id: 5,
       name: 'Upgrade',
       icon: ShieldCheck,
       path: '/dashboard/upgrade',
@@ -63,7 +70,7 @@ function SideNav() {
       <div>
         <div className='fixed bottom-10 p-3 flex gap-2 items-center'>
           <UserButton />
-          Profile
+          {user ? user?.fullName : 'Profile'}
         </div>
       </div>
     </div>
