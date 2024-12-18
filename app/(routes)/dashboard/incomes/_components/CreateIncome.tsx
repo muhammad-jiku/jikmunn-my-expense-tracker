@@ -40,9 +40,7 @@ function CreateIncome({ refreshData }: { refreshData: () => void }) {
       }),
     });
 
-    console.log('data', data);
     const result = await response.json();
-    console.log('result,', result);
 
     if (result) {
       refreshData();

@@ -8,18 +8,16 @@ export type BudgetType = {
   amount: number;
 };
 
-// Define a type for your budget objects
+// Define a type for your income objects
 export type IncomeType = {
   id: number;
   name: string;
-  // totalSpend: number;
-  // totalItem: number;
   totalAmount: number;
   icon: string;
   amount: number;
 };
 
-// Define a type for your budget objects
+// Define a type for your expense objects
 export type ExpenseType = {
   id: number;
   name: string;

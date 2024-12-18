@@ -16,8 +16,6 @@ export async function GET(request: NextRequest) {
   const result = await db
     .select({
       ...getTableColumns(Incomes),
-      // totalSpend: sql`sum(${Expenses.amount})`.mapWith(Number),
-      // totalItem: sql`count(${Expenses.id})`.mapWith(Number),
     })
     .from(Incomes)
     .leftJoin(Expenses, eq(Incomes.id, Expenses.budgetId))

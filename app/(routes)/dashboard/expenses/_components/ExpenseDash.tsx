@@ -12,20 +12,6 @@ function ExpenseDash() {
   const [expenseLists, setExpenseLists] = useState<ExpenseType[]>([]);
   const router = useRouter();
 
-  //   // Wrap the function in useCallback
-  //   const getBudgetLists = useCallback(async () => {
-  //     const response = await fetch('/api/get-budget-lists', {
-  //       method: 'GET',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //         'X-User-Email': user?.primaryEmailAddress?.emailAddress || '',
-  //       },
-  //     });
-
-  //     const result = await response.json();
-  //     setBudgetLists(result);
-  //   }, [user?.primaryEmailAddress?.emailAddress]); // Include dependencies
-
   // Wrap the function in useCallback
   const getExpenseLists = useCallback(async () => {
     const response = await fetch('/api/get-all-expense-lists', {
@@ -42,7 +28,6 @@ function ExpenseDash() {
 
   useEffect(() => {
     if (user) {
-      //   getBudgetLists();
       getExpenseLists();
     }
   }, [user, getExpenseLists]); // Dependencies include the user and the callback
@@ -66,7 +51,6 @@ function ExpenseDash() {
           expenseLists={expenseLists || []}
           refreshData={() => {
             getExpenseLists();
-            // getBudgetLists();
           }}
         />
       </div>

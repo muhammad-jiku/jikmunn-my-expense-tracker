@@ -51,15 +51,7 @@ function BudgetList() {
           ? budgetLists.map((budget, idx) => (
               <BudgetItem key={idx} budget={budget} />
             ))
-          : // : Array.from(
-            //     {
-            //       length: budgetLists?.length || 0
-            //     },
-            //     (_, idx) => idx + 1
-            //   ).map((num) => (
-            //     <div
-            //       key={num}
-            [1, 2, 3, 4, 5].map((num) => (
+          : [1, 2, 3, 4, 5].map((num) => (
               <div
                 key={num}
                 className='w-full bg-slate-200 rounded-lg h-[150px] animate-pulse'

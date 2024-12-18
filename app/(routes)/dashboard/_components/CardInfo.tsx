@@ -15,7 +15,6 @@ function CardInfo({
   const [totalBudget, setTotalBudget] = useState(0);
   const [totalIncome, setTotalIncome] = useState(0);
   const [totalSpend, setTotalSpend] = useState(0);
-  // const [financialAdvice, setFinancialAdvice] = useState(0);
 
   const calculateCardInfo = useCallback(() => {
     let totalBudget_ = 0;
@@ -75,8 +74,7 @@ function CardInfo({
             <div>
               <h2 className='text-sm'>Sum of Income Streams</h2>
               <h2 className='font-bold text-2xl'>
-                {/* ${formatNumber(Number(totalIncome.toFixed(2)))} */}$
-                {formatNumber(Number(totalIncome.toFixed(2)))}
+                ${formatNumber(Number(totalIncome.toFixed(2)))}
               </h2>
             </div>
             <CircleDollarSign className='bg-primary p-3 h-12 w-12 rounded-full text-white' />

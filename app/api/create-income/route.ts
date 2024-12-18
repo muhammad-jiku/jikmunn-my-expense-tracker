@@ -10,7 +10,7 @@ export async function POST(request: Request) {
     .values({
       name: data?.name,
       amount: data?.amount,
-      createdBy: data?.createdBy, // user?.primaryEmailAddress?.emailAddress as string,
+      createdBy: data?.createdBy,
       icon: data?.icon,
     })
     .returning({
