@@ -2,7 +2,8 @@
 
 import { UserButton, useUser } from '@clerk/nextjs';
 import {
-  BadgeDollarSign,
+  DollarSign,
+  Landmark,
   LayoutGrid,
   ReceiptText,
   ShieldCheck,
@@ -25,13 +26,13 @@ function SideNav() {
     {
       id: 2,
       name: 'Incomes',
-      icon: BadgeDollarSign,
+      icon: DollarSign,
       path: '/dashboard/incomes',
     },
     {
       id: 3,
       name: 'Budgets',
-      icon: BadgeDollarSign,
+      icon: Landmark,
       path: '/dashboard/budgets',
     },
     {

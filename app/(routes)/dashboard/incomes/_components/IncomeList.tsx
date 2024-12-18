@@ -2,12 +2,15 @@
 
 import { IncomeType } from '@/types';
 import { useUser } from '@clerk/nextjs';
+import { ArrowLeftCircle } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 import CreateIncome from './CreateIncome';
 import IncomeItem from './IncomeItem';
 
 function IncomeList() {
   const { user } = useUser();
+  const router = useRouter();
   const [incomeList, setIncomeList] = useState<IncomeType[]>([]);
 
   // Wrap the function in useCallback
@@ -30,6 +33,18 @@ function IncomeList() {
 
   return (
     <div className='mt-7'>
+      <h2 className='font-bold text-3xl my-3'>
+        {' '}
+        <span className='flex items-center justify-start gap-2'>
+          <ArrowLeftCircle
+            className='cursor-pointer'
+            onClick={() => {
+              router.back();
+            }}
+          />
+          My Income Sources{' '}
+        </span>
+      </h2>
       <div
         className='grid grid-cols-1
         md:grid-cols-2 lg:grid-cols-3 gap-5'
@@ -37,7 +52,11 @@ function IncomeList() {
         <CreateIncome refreshData={() => getIncomeLists()} />
         {incomeList?.length > 0
           ? incomeList.map((income, index) => (
-              <IncomeItem income={income} key={index} />
+              <IncomeItem
+                income={income}
+                key={index}
+                getIncomeLists={getIncomeLists}
+              />
             ))
           : [1, 2, 3, 4, 5].map((item, index) => (
               <div

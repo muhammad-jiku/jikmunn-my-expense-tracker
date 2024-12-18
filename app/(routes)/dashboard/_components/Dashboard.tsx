@@ -1,6 +1,6 @@
 'use client';
 
-import { BudgetType, ExpenseType } from '@/types';
+import { BudgetType, ExpenseType, IncomeType } from '@/types';
 import { useUser } from '@clerk/nextjs';
 import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
@@ -13,6 +13,7 @@ function Dashboard() {
   const { user, isSignedIn } = useUser();
   const router = useRouter();
   const [budgetLists, setBudgetLists] = useState<BudgetType[]>([]);
+  const [incomeLists, setIncomeLists] = useState<IncomeType[]>([]);
   const [expenseLists, setExpenseLists] = useState<ExpenseType[]>([]);
 
   // Wrap the function in useCallback
@@ -27,6 +28,20 @@ function Dashboard() {
 
     const result = await response.json();
     setBudgetLists(result);
+  }, [user?.primaryEmailAddress?.emailAddress]); // Include dependencies
+
+  // Wrap the function in useCallback
+  const getIncomeLists = useCallback(async () => {
+    const response = await fetch('/api/get-all-income-lists', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-User-Email': user?.primaryEmailAddress?.emailAddress || '',
+      },
+    });
+
+    const result = await response.json();
+    setIncomeLists(result);
   }, [user?.primaryEmailAddress?.emailAddress]); // Include dependencies
 
   // Wrap the function in useCallback
@@ -46,9 +61,10 @@ function Dashboard() {
   useEffect(() => {
     if (user) {
       getBudgetLists();
+      getIncomeLists();
       getExpenseLists();
     }
-  }, [user, getBudgetLists, getExpenseLists]); // Dependencies include the user and the callback
+  }, [user, getBudgetLists, getIncomeLists, getExpenseLists]); // Dependencies include the user and the callback
 
   useEffect(() => {
     if (!isSignedIn) router.replace('/');
@@ -61,7 +77,7 @@ function Dashboard() {
         Here&apos;s what happening with your savings, Let&apos;s manage your
         expense.
       </p>
-      <CardInfo budgetLists={budgetLists} />
+      <CardInfo budgetLists={budgetLists} incomeLists={incomeLists} />
       <div className='mt-6 grid grid-cols-1 md:grid-cols-3 gap-3'>
         <div className='md:col-span-2'>
           <BarChartDash budgetLists={budgetLists} />

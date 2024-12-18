@@ -12,8 +12,9 @@ export type BudgetType = {
 export type IncomeType = {
   id: number;
   name: string;
-  totalSpend: number;
-  totalItem: number;
+  // totalSpend: number;
+  // totalItem: number;
+  totalAmount: number;
   icon: string;
   amount: number;
 };
